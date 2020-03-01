@@ -9,6 +9,9 @@ function App() {
     //create the states of the teams' initial scores
     const [homeTeam, homeSetScore] = useState(0);
     const [awayTeam, awaySetScore] = useState(0);
+    //STRETCH GOAL: TIMER
+    let a = 0;
+    const [startTime, setTimer] = useState(`${a}:${a}${a}`);
 
     //create Team Constants
     const theHomeTeam = 'Lions';
@@ -17,7 +20,9 @@ function App() {
     //adjust the teams' scores
     const homeTeamScore = score => {homeSetScore (homeTeam + score);};
     const awayTeamScore = score => {awaySetScore (awayTeam + score);};
-  
+    //STRETCH GOAL: TIMER
+    const theTimer = time => {setTimer (startTime + time);};
+    
   return (
     // the container
     <div className="container">
@@ -37,7 +42,7 @@ function App() {
             </div>
 
             {/* Create The Timer container */}
-            <div className="timer">00:03</div>
+            <div className="timer">{startTime}</div>
 
             {/* Create The Away Team container */}
             <div className="away">
@@ -65,6 +70,10 @@ function App() {
           {/* add the onClick listener for away buttons to adjust scores for a touchdown with an extra point +7, and the second button for a field goal +3 points. */}
             <button onClick={() => awayTeamScore(7)} className="awayButtons__touchdown">Away Touchdown</button>
             <button onClick={() => awayTeamScore(3)} className="awayButtons__fieldGoal">Away Field Goal</button>
+        </div>
+
+        <div className="awayButtons">
+          <button onClick={() => theTimer(1)} className="awayButtons__touchdown">Start Time</button>
         </div>
       </section>
     </div>
